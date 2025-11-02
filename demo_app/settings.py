@@ -51,9 +51,9 @@ WSGI_APPLICATION = "demo_app.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django_demo",   # whatever DB you created in pgAdmin
-        "USER": "postgres",      # your Postgres username
-        "PASSWORD": "root",
+        "NAME": "django_demo",  
+        "USER": "postgres",     
+        "PASSWORD": os.getenv("DB_PASSWORD", ""),
         "HOST": "localhost",
         "PORT": "5432",
     }
