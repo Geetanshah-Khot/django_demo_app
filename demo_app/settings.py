@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,14 +51,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "demo_app.wsgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "django_demo",  
-        "USER": "postgres",     
-        "PASSWORD": os.getenv("DB_PASSWORD", ""),
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
+    "default": dj_database_url.config(default=os.environ.get("DATABASE_URL"))
 }
 
 AUTH_PASSWORD_VALIDATORS = []
