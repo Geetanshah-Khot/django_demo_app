@@ -1,6 +1,2 @@
-/* Prettify fallback */
-code {
-  background: #f3f3f3;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
+/* Google Code Prettify fallback */
+@import url("https://cdn.jsdelivr.net/gh/google/code-prettify@master/src/prettify.css");
