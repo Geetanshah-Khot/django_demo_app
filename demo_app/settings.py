@@ -52,18 +52,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "demo_app.wsgi.application"
 
-# Local SQLite fallback (used only if DATABASE_URL is not found)
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
-# Override with Railway’s PostgreSQL
 DATABASE_URL = os.getenv("DATABASE_URL")
-if DATABASE_URL:
-    DATABASES["default"] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+DATABASES = {
+    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+}
 
 AUTH_PASSWORD_VALIDATORS = []
 LANGUAGE_CODE = "en-us"
