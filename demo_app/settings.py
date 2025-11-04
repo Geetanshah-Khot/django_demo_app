@@ -7,7 +7,16 @@ import rest_framework
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "core",
+    "rest_framework",
+]
 SECRET_KEY = os.getenv("SECRET_KEY", "replace-with-a-secret-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
