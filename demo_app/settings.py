@@ -74,9 +74,9 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     Path(rest_framework.__file__).resolve().parent / "static",
 ]
-STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
