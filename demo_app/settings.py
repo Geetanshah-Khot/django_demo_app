@@ -75,8 +75,12 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    Path(rest_framework.__file__).resolve().parent / "static",
-]
+STATICFILES_DIRS = [BASE_DIR / "static"]
+try:
+    import rest_framework
+    REST_FRAMEWORK_STATIC_PATH = Path(rest_framework.__file__).resolve().parent / "static"
+    if REST_FRAMEWORK_STATIC_PATH.exists():
+        STATICFILES_DIRS.append(REST_FRAMEWORK_STATIC_PATH)
+except ImportError:
+    pass
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
