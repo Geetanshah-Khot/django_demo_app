@@ -1,1 +1,2 @@
-
+/* Custom tweaks for REST framework view */
+body { padding: 10px; }
