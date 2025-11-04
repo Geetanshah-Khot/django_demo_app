@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.http import HttpResponse
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 def home(request):
     return HttpResponse("<h1>Welcome! Django demo app is running 🎉</h1><p>Visit /api/ for API endpoints.</p>")
