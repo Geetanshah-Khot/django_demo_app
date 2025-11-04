@@ -1,7 +1,7 @@
 import os
+from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
-from pathlib import Path
 import rest_framework
 
 load_dotenv()
@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "replace-with-a-secret-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "['localhost']").strip("[]").replace('"', '').replace("'", "").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(",")
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL:
