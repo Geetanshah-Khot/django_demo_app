@@ -2,11 +2,13 @@ from pathlib import Path
 import os
 import dj_database_url
 from dotenv import load_dotenv
+
 load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "replace-with-a-secret-key"
-DEBUG = True
+SECRET_KEY = os.getenv("SECRET_KEY", "replace-with-a-secret-key")
+DEBUG = os.getenv("DEBUG", "True") == "True"
 ALLOWED_HOSTS = ["*", ".up.railway.app"]
 
 INSTALLED_APPS = [
@@ -50,6 +52,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "demo_app.wsgi.application"
 
+# Local SQLite fallback (used only if DATABASE_URL is not found)
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -57,7 +60,7 @@ DATABASES = {
     }
 }
 
-# If DATABASE_URL exists (on Railway), override it
+# Override with Railway’s PostgreSQL
 DATABASE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL:
     DATABASES["default"] = dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
@@ -68,7 +71,8 @@ TIME_ZONE = "Asia/Kolkata"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles" 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
