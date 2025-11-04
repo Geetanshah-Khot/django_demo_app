@@ -1,8 +1,8 @@
 from pathlib import Path
 import os
 import dj_database_url
-import rest_framework
 from dotenv import load_dotenv
+import rest_framework
 
 load_dotenv()
 
@@ -54,11 +54,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "demo_app.wsgi.application"
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-
 if DATABASE_URL:
-    DATABASES = {
-        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-    }
+    DATABASES = {"default": dj_database_url.parse(DATABASE_URL, conn_max_age=600)}
 else:
     DATABASES = {
         "default": {
@@ -68,17 +65,21 @@ else:
     }
 
 AUTH_PASSWORD_VALIDATORS = []
+
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Kolkata"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # your project static folder
+    Path(rest_framework.__file__).resolve().parent / "static",  # DRF static files
+]
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
