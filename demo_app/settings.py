@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import dj_database_url
+import rest_framework
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -75,7 +76,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    BASE_DIR / "venv" / "Lib" / "site-packages" / "rest_framework" / "static",  # for local
+    Path(rest_framework.__file__).resolve().parent / "static",
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
