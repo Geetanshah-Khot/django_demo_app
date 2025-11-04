@@ -81,6 +81,6 @@ try:
     REST_FRAMEWORK_STATIC_PATH = Path(rest_framework.__file__).resolve().parent / "static"
     if REST_FRAMEWORK_STATIC_PATH.exists():
         STATICFILES_DIRS.append(REST_FRAMEWORK_STATIC_PATH)
-except ImportError:
-    pass
+except Exception as e:
+    print("⚠️ DRF static path not found:", e)
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
